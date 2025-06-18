@@ -22,7 +22,7 @@ export default function Logo({ className = '', height = 50 }: LogoProps) {
     <div className={`relative ${className} flex items-center gap-3`}>
       <div className="relative">
         <Image
-          src="/images/logo.svg"
+          src="/images/Logo.svg"
           alt="Suncrest Fitness Center"
           width={width}
           height={height}
