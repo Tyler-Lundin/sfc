@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Fugaz_One } from "next/font/google";
+import { Fugaz_One, Roboto } from "next/font/google";
+import MerchFAB from "@/components/ShopFAB";
+import MobileNav from "@/components/MobileNav";
+import MerchDrawer from "@/components/MerchDrawer";
+import { useState } from "react";
 
 const fugazOne = Fugaz_One({
   weight: ["400"],
@@ -9,9 +13,34 @@ const fugazOne = Fugaz_One({
   display: "swap",
 });
 
+const roboto = Roboto({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function Home() {
+  const [isMerchDrawerOpen, setIsMerchDrawerOpen] = useState(false);
+
+  const handleMerchClick = () => {
+    setIsMerchDrawerOpen(true);
+  };
+
+  const handleCloseMerchDrawer = () => {
+    setIsMerchDrawerOpen(false);
+  };
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-gray-900">
+      {/* Mobile Navigation */}
+      <MobileNav />
+      
+      {/* Merchandise Floating Action Button (Desktop) */}
+      <MerchFAB onClick={handleMerchClick} />
+      
+      {/* Merchandise Drawer */}
+      <MerchDrawer isOpen={isMerchDrawerOpen} onClose={handleCloseMerchDrawer} />
+      
       {/* Background Image with Multiple Overlays */}
       <div className="absolute inset-0 z-0">
         {/* Base Image */}
@@ -57,13 +86,13 @@ export default function Home() {
             </motion.div>
 
             <motion.h1 
-              className={`${fugazOne.className} text-7xl md:text-9xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight leading-none`}
+              className={`${fugazOne.className} text-4xl sm:text-6xl md:text-9xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight leading-none`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
               <div className="whitespace-nowrap">SUNCREST</div>
-              <div className=" text-5xl md:text-8xl mt-2 flex gap-2 justify-center sm:justify-start">
+              <div className={`${roboto.className} text-3xl sm:text-5xl md:text-8xl mt-2 flex gap-2 justify-center sm:justify-start`}>
                 <span className="block sm:inline lg:pr-2">Fitness</span>
                 <span className="block sm:inline">Center</span>
               </div>
